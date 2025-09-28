@@ -6,7 +6,7 @@ application = Flask(__name__)
 
 @application.route('/')
 def index():
-    return "Hello, Elastic Beanstalk! 部署成功!!!!!!!!!!??????????????🎉7777777888"
+    return "Hello, Elastic Beanstalk! 部署成功!!!!!!!!!!??????????????🎉7777777999888"
 
 # 本地測試時可以使用這段
 if __name__ == "__main__":
