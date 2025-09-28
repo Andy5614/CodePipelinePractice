@@ -8,19 +8,16 @@ phases:
       - echo "Installing dependencies..."
       - pip install --upgrade pip
       - pip install flask
-
   pre_build:
     commands:
       - echo "Pre-build phase: Checking Python version"
       - python --version
-
   build:
     commands:
       - echo "Build phase: Starting application test"
-      - python application.py &        # 啟動 Flask App
-      - sleep 3                        # 等 3 秒讓伺服器起來
+      - python application.py &
+      - sleep 3
       - curl http://127.0.0.1:5000 | grep -F "部署成功"
-
   post_build:
     commands:
       - echo "Post-build phase: Build completed successfully"
