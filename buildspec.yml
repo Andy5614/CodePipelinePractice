@@ -5,16 +5,19 @@ phases:
     runtime-versions:
       python: 3.9
     commands:
-      - echo "Install phase"
-
+      - echo "Installing dependencies..."
+      - pip install --upgrade pip
+      - pip install flask
   pre_build:
     commands:
       - echo "Pre-build phase"
-
+      - python --version
   build:
     commands:
       - echo "Build phase"
-
+      - python application.py &
+      - sleep 3
+      - curl http://127.0.0.1:5000 | grep -F "部署成功"
   post_build:
     commands:
-      - echo "Post-build phase"
+      - echo "Post-build phase completed"
