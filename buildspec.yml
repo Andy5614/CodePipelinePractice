@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9   # 你可以換成 3.10 或 3.11
+    commands:
+      - echo "Installing dependencies..."
+      - pip install --upgrade pip
+      - pip install flask    # 你的 app 需要的套件
+
+  pre_build:
+    commands:
+      - echo "Pre-build phase: Checking Python version"
+      - python --version
+
+  build:
+    commands:
+      - echo "Build phase: Starting application test"
+      # 用 python 執行 application.py，確保可以啟動
+      - python application.py &
+      # 簡單測試應用程式首頁回傳
+      - sleep 3
+      - curl http://127.0.0.1:5000 | grep -F "部署成功"
+
+  post_build:
+    commands:
+      - echo "Post-build phase: Build completed successfully"
